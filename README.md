@@ -1,13 +1,13 @@
-# Kora Payment SDK
+# Kora Checkout
 
 A JavaScript SDK for integrating with Kora's Checkout Standard payment gateway.
 
 ## Installation
 
 ```bash
-npm install kora-payment-sdk
+npm install kora-checkout
 # or
-yarn add kora-payment-sdk
+yarn add kora-checkout
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ yarn add kora-payment-sdk
 ### ES Modules
 
 ```javascript
-import KoraPayment from 'kora-payment-sdk';
+import KoraPayment from 'kora-checkout';
 
 // Create a new instance
 const koraPayment = new KoraPayment();
@@ -45,7 +45,7 @@ koraPayment.initialize({
 ### CommonJS
 
 ```javascript
-const { KoraPayment } = require('kora-payment-sdk');
+const { KoraPayment } = require('kora-checkout');
 
 // Create a new instance
 const koraPayment = new KoraPayment();
@@ -66,7 +66,7 @@ koraPayment.initialize({
 ### Browser (UMD)
 
 ```html
-<script src="https://unpkg.com/kora-payment-sdk/dist/index.js"></script>
+<script src="https://unpkg.com/kora-checkout/dist/index.js"></script>
 <script>
   // Global variable KoraPayment is available
   const payment = new KoraPayment();
