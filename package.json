@@ -1,6 +1,6 @@
 {
   "name": "kora-checkout",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A JavaScript SDK for integrating with Kora's Checkout Standard payment gateway",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
