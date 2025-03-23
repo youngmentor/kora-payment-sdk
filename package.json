@@ -33,6 +33,7 @@
     "url": "https://github.com/youngmentor/kora-payment-sdk/issues"
   },
   "homepage": "https://github.com/youngmentor/kora-payment-sdk#readme",
+  "logo": "https://raw.githubusercontent.com/youngmentor/kora-payment-sdk/main/koralogo.svg",
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",

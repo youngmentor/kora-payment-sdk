@@ -12,85 +12,42 @@ yarn add kora-checkout
 
 ## Usage
 
-### ES Modules
+### React + TypeScript Example
 
-```javascript
-import KoraPayment from 'kora-checkout';
+```tsx
+import KoraPayment, { KoraPaymentOptions } from 'kora-checkout';
 
-// Create a new instance
-const koraPayment = new KoraPayment();
+const handlePayment = () => {
+    const paymentOptions: KoraPaymentOptions = {
+        key: "pk_test_***********************",
+        reference: `ref-${Date.now()}`,
+        amount: 5000, // Example amount
+        customer: {
+            name: "Jane Doe",
+            email: "jane@example.com"
+        },
+        onSuccess: () => {
+            console.log('Payment successful');
+        },
+        onFailed: (err: { message: string }) => {
+            console.error(err.message);
+        }
+    };
 
-// Initialize payment
-koraPayment.initialize({
-  key: "pk_test_xxxxxxxxxxxxxxxxx",  // Replace with your public key
-  reference: "your-unique-reference", // Unique for each transaction
-  amount: 22000, 
-  currency: "NGN",
-  customer: {
-    name: "John Doe",
-    email: "john@example.com"
-  },
-  onClose: function() {
-    console.log("Payment modal closed");
-  },
-  onSuccess: function(data) {
-    console.log("Payment successful", data);
-  },
-  onFailed: function(data) {
-    console.log("Payment failed", data);
-  }
-});
+    const payment = new KoraPayment();
+    payment.initialize(paymentOptions);
+};
+
+return (
+    <button onClick={handlePayment} className="bg-green-500 text-white p-3 rounded">
+        Pay with Kora
+    </button>
+);
 ```
 
-### CommonJS
+### API Reference
 
-```javascript
-const { KoraPayment } = require('kora-checkout');
-
-// Create a new instance
-const koraPayment = new KoraPayment();
-
-// Initialize payment
-koraPayment.initialize({
-  key: "pk_test_xxxxxxxxxxxxxxxxx",  // Replace with your public key
-  reference: "your-unique-reference", // Unique for each transaction
-  amount: 22000, 
-  currency: "NGN",
-  customer: {
-    name: "John Doe",
-    email: "john@example.com"
-  }
-});
-```
-
-### Browser (UMD)
-
-```html
-<script src="https://unpkg.com/kora-checkout/dist/index.js"></script>
-<script>
-  // Global variable KoraPayment is available
-  const payment = new KoraPayment();
-  
-  function payWithKora() {
-    payment.initialize({
-      key: "pk_test_xxxxxxxxxxxxxxxxx",  // Replace with your public key
-      reference: "your-unique-reference", // Unique for each transaction
-      amount: 22000, 
-      currency: "NGN",
-      customer: {
-        name: "John Doe",
-        email: "john@example.com"
-      }
-    });
-  }
-</script>
-
-<button onclick="payWithKora()">Pay Now</button>
-```
-
-## API Reference
-
-### Constructor
+#### Constructor
 
 ```javascript
 const koraPayment = new KoraPayment(config);
@@ -108,21 +65,60 @@ Initializes the payment gateway with the provided options.
 
 ```javascript
 koraPayment.initialize({
-  key: "pk_test_xxxxxxxxxxxxxxxxx",
-  reference: "your-unique-reference",
-  amount: 22000,
+  key: "pk_test_xxxxxxxxxxxxxxxxx",  // Replace with your public key
+  reference: "your-unique-reference", // Unique for each transaction
+  amount: 22000, 
   currency: "NGN",
   customer: {
     name: "John Doe",
     email: "john@example.com"
-  },
-  notification_url: "https://example.com/webhook",
-  onSuccess: function(data) {
-    console.log("Payment successful", data);
   }
 });
 ```
 
+### CommonJS
+
+```javascript
+const { KoraPayment } = require('kora-checkout');
+const koraPayment = new KoraPayment();
+
+koraPayment.initialize({
+  key: "pk_test_xxxxxxxxxxxxxxxxx",  
+  reference: "your-unique-reference",
+  amount: 22000, 
+  currency: "NGN",
+  customer: {
+    name: "John Doe",
+    email: "john@example.com"
+  }
+});
+```
+
+### Browser (UMD)
+
+```html
+<script src="https://unpkg.com/kora-checkout/dist/index.js"></script>
+<script>
+  const payment = new KoraPayment();
+  function payWithKora() {
+    payment.initialize({
+      key: "pk_test_xxxxxxxxxxxxxxxxx",
+      reference: "your-unique-reference",
+      amount: 22000, 
+      currency: "NGN",
+      customer: {
+        name: "John Doe",
+        email: "john@example.com"
+      }
+    });
+  }
+</script>
+
+<button onclick="payWithKora()">Pay Now</button>
+```
+
+
+```
 ##### Required Options:
 
 - `key`: Your public key from Korapay
@@ -159,3 +155,5 @@ koraPayment.close();
 ## License
 
 MIT
+
+![Kora Checkout Logo](https://raw.githubusercontent.com/youngmentor/kora-payment-sdk/main/koralogo.svg)
